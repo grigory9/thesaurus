@@ -6,14 +6,42 @@
 //
 
 import UIKit
+import SQLite
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    static let vocabulary = Vocabulary()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+
+        guard let dbPath = Bundle.main.path(forResource: "dvoretsky_greek", ofType: "db") else {
+            fatalError()
+        }
+
+        do {
+            let db = try Connection(dbPath)
+
+            let hash = Expression<Int>("hash")
+            let title = Expression<String>("title")
+            let entry = Expression<String>("entry")
+
+            try Letter.Letters.allCases.forEach {
+                let table = Table($0.rawValue)
+
+                for word in try db.prepare(table) {
+                    AppDelegate.vocabulary.populate(letter: $0, hash: word[hash], value: word[title], entry: word[entry])
+                }
+            }
+
+            print("Finished")
+
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+
         return true
     }
 
