@@ -6,57 +6,12 @@
 //
 
 import Foundation
-
-struct Word: Hashable {
-    let hash: Int
-    let value: String
-    let entry: String
-}
-
-class Letter {
-
-    enum Letters: String, CaseIterable {
-        case alpha
-        case beta
-        case gamma
-        case delta
-        case epsilon
-        case zeta
-        case eta
-        case theta
-        case iota
-        case kappa
-        case lambda
-        case mu
-        case nu
-        case xi
-        case omicron
-        case pi
-        case rho
-        case sigma
-        case tau
-        case ypsilon
-        case phi
-        case chi
-        case psi
-        case omega
-    }
-
-    let value: Letters
-    let startHash: Int
-    let endHash: Int
-    var words: [Word] = []
-
-    init(value: Letters, startHash: Int, endHash: Int) {
-        self.value = value
-        self.startHash = startHash
-        self.endHash = endHash
-    }
-}
+import SQLite
 
 final class Vocabulary {
 
     private(set) var totalWordsCount = 0
+    static let shared = Vocabulary()
 
     let letters = [
         Letter(value: .alpha, startHash: 95367431640625, endHash: 190734863281249),
@@ -85,20 +40,18 @@ final class Vocabulary {
         Letter(value: .omega, startHash: 2288818359375000, endHash: 2384185791015624),
     ]
 
-    init() {
+    private init() { }
 
-    }
+}
 
-    func populate(letter: Letter.Letters, hash: Int, value: String, entry: String) {
-        self.totalWordsCount += 1
-        self.letters
-            .first { $0.value == letter }?
-            .words
-            .append(Word(hash: hash, value: value, entry: entry))
+// MARK: - find methods
+extension Vocabulary {
+    func find(section: Int, row: Int) -> Word? {
+        let letter = letters[section]
+        return letter.words[row]
     }
 
     func find(by number: Int) -> Word? {
-        var currentNumber = 0
         var index = number
 
         for (letterIndex, letter) in letters.enumerated() {
@@ -143,49 +96,60 @@ final class Vocabulary {
         return nil
     }
 
-}
+    func findIndex(by hash: Int) -> IndexPath? {
+        var currentNumber = 0
+        var letter: Letter?
+        var section = 0
 
-
-extension String {
-    func greekHash() -> Int {
-        var sum: Int = 0;
-
-        for (i, letter) in self.enumerated() {
-            let valueDec = pow(25, 10 - i)
-            let value = NSDecimalNumber(decimal: valueDec).intValue
-
-            var mult = 1
-            switch letter {
-            case "α": mult = 1
-            case "β": mult = 2
-            case "γ": mult = 3
-            case "δ": mult = 4
-            case "ε": mult = 5
-            case "ζ": mult = 6
-            case "η": mult = 7
-            case "θ": mult = 8
-            case "ι": mult = 9
-            case "κ": mult = 10
-            case "λ": mult = 11
-            case "μ": mult = 12
-            case "ν": mult = 13
-            case "ξ": mult = 14
-            case "ο": mult = 15
-            case "π": mult = 16
-            case "ρ": mult = 17
-            case "ς": mult = 18
-            case "σ": mult = 18
-            case "τ": mult = 19
-            case "υ": mult = 20
-            case "φ": mult = 21
-            case "χ": mult = 22
-            case "ψ": mult = 23
-            case "ω": mult = 24
-            default: break
+        for curLetter in letters {
+            currentNumber = curLetter.words.count + currentNumber
+            if curLetter.startHash <= hash && curLetter.endHash >= hash {
+                letter = curLetter
+                break
             }
-            sum += mult * value
+            section += 1
         }
 
-        return sum
+        guard let letter = letter else {
+            return nil
+        }
+
+        var prevWord: Word = letter.words.first!
+        for (wordIndex, word) in letter.words.enumerated() {
+            if prevWord.hash <= hash && word.hash > hash {
+                return IndexPath(row: wordIndex, section: section)
+            }
+            prevWord = word
+        }
+
+        return nil
+    }
+}
+
+// MARK: - seed methods
+extension Vocabulary {
+
+    func populate(letter: Letter.Letters, hash: Int, value: String, entry: String) {
+        self.totalWordsCount += 1
+        self.letters
+            .first { $0.value == letter }?
+            .words
+            .append(Word(hash: hash, value: value, entry: entry))
+    }
+
+    func seed(with dbPath: String) throws {
+        let db = try Connection(dbPath)
+
+        let hash = Expression<Int>("hash")
+        let title = Expression<String>("title")
+        let entry = Expression<String>("entry")
+
+        try Letter.Letters.allCases.forEach {
+            let table = Table($0.rawValue)
+
+            for word in try db.prepare(table) {
+                populate(letter: $0, hash: word[hash], value: word[title], entry: word[entry])
+            }
+        }
     }
 }

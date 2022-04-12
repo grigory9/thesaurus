@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7F58001328045B500089B7AD /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58001228045B500089B7AD /* WordViewController.swift */; };
-		7F58001528047E860089B7AD /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58001428047E860089B7AD /* SearchTextField.swift */; };
+		7F58002928055DBB0089B7AD /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58002828055DBB0089B7AD /* Letter.swift */; };
+		7F58002B28055DDB0089B7AD /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58002A28055DDB0089B7AD /* Word.swift */; };
+		7F58002E280597F70089B7AD /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58002D280597F70089B7AD /* String.swift */; };
 		7FA90C4227F47FEE00B46F00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA90C4127F47FEE00B46F00 /* AppDelegate.swift */; };
 		7FA90C4427F47FEE00B46F00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA90C4327F47FEE00B46F00 /* SceneDelegate.swift */; };
 		7FA90C4627F47FEE00B46F00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA90C4527F47FEE00B46F00 /* ViewController.swift */; };
@@ -35,8 +37,9 @@
 
 /* Begin PBXFileReference section */
 		7F58001228045B500089B7AD /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
-		7F58001428047E860089B7AD /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
-		7F58001A280481B10089B7AD /* GreekKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GreekKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F58002828055DBB0089B7AD /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
+		7F58002A28055DDB0089B7AD /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		7F58002D280597F70089B7AD /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		7FA90C3E27F47FEE00B46F00 /* GreekDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreekDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA90C4127F47FEE00B46F00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FA90C4327F47FEE00B46F00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,13 +53,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7F580017280481B10089B7AD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7FA90C3B27F47FEE00B46F00 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -68,6 +64,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F58002728055DB30089B7AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7F58002C280597EF0089B7AD /* Extensions */,
+				7F58002828055DBB0089B7AD /* Letter.swift */,
+				7F58002A28055DDB0089B7AD /* Word.swift */,
+				7FA90C5A27F4E89500B46F00 /* Vocabulary.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7F58002C280597EF0089B7AD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7F58002D280597F70089B7AD /* String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7F58002F28059A520089B7AD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7FA90C4C27F47FEF00B46F00 /* LaunchScreen.storyboard */,
+				7FA90C4727F47FEE00B46F00 /* Main.storyboard */,
+				7FA90C4527F47FEE00B46F00 /* ViewController.swift */,
+				7F58001228045B500089B7AD /* WordViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7F58003028059A640089B7AD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7FA90C4127F47FEE00B46F00 /* AppDelegate.swift */,
+				7FA90C4327F47FEE00B46F00 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		7FA90C3527F47FEE00B46F00 = {
 			isa = PBXGroup;
 			children = (
@@ -80,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				7FA90C3E27F47FEE00B46F00 /* GreekDictionary.app */,
-				7F58001A280481B10089B7AD /* GreekKeyboard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,17 +122,12 @@
 		7FA90C4027F47FEE00B46F00 /* GreekDictionary */ = {
 			isa = PBXGroup;
 			children = (
-				7FA90C4127F47FEE00B46F00 /* AppDelegate.swift */,
-				7FA90C4327F47FEE00B46F00 /* SceneDelegate.swift */,
-				7FA90C4527F47FEE00B46F00 /* ViewController.swift */,
-				7F58001228045B500089B7AD /* WordViewController.swift */,
-				7FA90C4727F47FEE00B46F00 /* Main.storyboard */,
+				7F58003028059A640089B7AD /* App */,
+				7F58002F28059A520089B7AD /* Controllers */,
+				7F58002728055DB30089B7AD /* Models */,
 				7FA90C4A27F47FEF00B46F00 /* Assets.xcassets */,
-				7FA90C4C27F47FEF00B46F00 /* LaunchScreen.storyboard */,
 				7FA90C5827F4807D00B46F00 /* dvoretsky_greek.db */,
 				7FA90C4F27F47FEF00B46F00 /* Info.plist */,
-				7FA90C5A27F4E89500B46F00 /* Vocabulary.swift */,
-				7F58001428047E860089B7AD /* SearchTextField.swift */,
 			);
 			path = GreekDictionary;
 			sourceTree = "<group>";
@@ -106,23 +135,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7F580019280481B10089B7AD /* GreekKeyboard */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7F580023280481B10089B7AD /* Build configuration list for PBXNativeTarget "GreekKeyboard" */;
-			buildPhases = (
-				7F580016280481B10089B7AD /* Sources */,
-				7F580017280481B10089B7AD /* Frameworks */,
-				7F580018280481B10089B7AD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = GreekKeyboard;
-			productName = GreekKeyboard;
-			productReference = 7F58001A280481B10089B7AD /* GreekKeyboard.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		7FA90C3D27F47FEE00B46F00 /* GreekDictionary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7FA90C5227F47FEF00B46F00 /* Build configuration list for PBXNativeTarget "GreekDictionary" */;
@@ -154,9 +166,6 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
-					7F580019280481B10089B7AD = {
-						CreatedOnToolsVersion = 13.0;
-					};
 					7FA90C3D27F47FEE00B46F00 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -179,19 +188,11 @@
 			projectRoot = "";
 			targets = (
 				7FA90C3D27F47FEE00B46F00 /* GreekDictionary */,
-				7F580019280481B10089B7AD /* GreekKeyboard */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7F580018280481B10089B7AD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7FA90C3C27F47FEE00B46F00 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -206,23 +207,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7F580016280481B10089B7AD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7FA90C3A27F47FEE00B46F00 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F58002928055DBB0089B7AD /* Letter.swift in Sources */,
+				7F58002B28055DDB0089B7AD /* Word.swift in Sources */,
 				7FA90C4627F47FEE00B46F00 /* ViewController.swift in Sources */,
 				7FA90C4227F47FEE00B46F00 /* AppDelegate.swift in Sources */,
 				7F58001328045B500089B7AD /* WordViewController.swift in Sources */,
 				7FA90C4427F47FEE00B46F00 /* SceneDelegate.swift in Sources */,
+				7F58002E280597F70089B7AD /* String.swift in Sources */,
 				7FA90C5B27F4E89500B46F00 /* Vocabulary.swift in Sources */,
-				7F58001528047E860089B7AD /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,54 +244,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		7F580024280481B10089B7AD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GreekKeyboard/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = GreekKeyboard;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = home.GreekDictionary.GreekKeyboard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		7F580025280481B10089B7AD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GreekKeyboard/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = GreekKeyboard;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = home.GreekDictionary.GreekKeyboard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		7FA90C5027F47FEF00B46F00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -421,6 +369,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GreekDictionary/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Thēsaurós";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -432,7 +381,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = home.GreekDictionary;
+				PRODUCT_BUNDLE_IDENTIFIER = metelev.thesauros.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -449,6 +398,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GreekDictionary/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Thēsaurós";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -460,7 +410,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = home.GreekDictionary;
+				PRODUCT_BUNDLE_IDENTIFIER = metelev.thesauros.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -471,15 +421,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7F580023280481B10089B7AD /* Build configuration list for PBXNativeTarget "GreekKeyboard" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7F580024280481B10089B7AD /* Debug */,
-				7F580025280481B10089B7AD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		7FA90C3927F47FEE00B46F00 /* Build configuration list for PBXProject "GreekDictionary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
